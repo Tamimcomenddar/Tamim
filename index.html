@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en" class="light-theme">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tamim Commander — Digital Identity</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ========================================
+           ROOT VARIABLES & THEMING
+           ======================================== */
+        :root {
+            --bg-primary: #f0f0f5;
+            --bg-secondary: #e8e8ef;
+            --bg-card: rgba(0, 0, 0, 0.04);
+            --bg-card-hover: rgba(0, 0, 0, 0.08);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-glow: rgba(0, 0, 0, 0.15);
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --text-muted: #777777;
+            --accent-1: #8b5cf6;
+            --accent-2: #ec4899;
+            --accent-3: #22d3ee;
+            --accent-4: #f59e0b;
+            --shadow: 0 20px 80px rgba(0, 0, 0, 0.1);
+            --radius: 28px;
+            --radius-sm: 14px;
+            --transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .light-theme {
+            --bg-primary: #f0f0f5;
+            --bg-secondary: #e8e8ef;
+            --bg-card: rgba(0, 0, 0, 0.04);
+            --bg-card-hover: rgba(0, 0, 0, 0.08);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-glow: rgba(0, 0, 0, 0.15);
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --text-muted: #777777;
+            --shadow: 0 20px 80px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark theme - applied when .light-theme is removed */
+        :root:not(.light-theme) {
+            --bg-primary: #050507;
+            --bg-secondary: #0b0b12;
+            --bg-card: rgba(255, 255, 255, 0.045);
+            --bg-card-hover: rgba(255, 255, 255, 0.09);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(255, 255, 255, 0.18);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #7a7a8a;
+            --shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+        }
+
+        :root:not(.light-theme) .gradient-text {
+            background: linear-gradient(105deg, #fff 10%, #a78bfa 35%, #f472b6 60%, #67e8f9 85%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradientMove 8s ease-in-out infinite alternate;
+        }
+
+        .light-theme .gradient-text {
+            background: linear-gradient(105deg, #1a1a2e 10%, #8b5cf6 35%, #ec4899 60%, #22d3ee 85%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradientMove 8s ease-in-out infinite alternate;
+        }
+
+        :root:not(.light-theme) .orb {
+            opacity: 0.5;
+        }
+        .light-theme .orb {
+            opacity: 0.2;
+        }
+
+        :root:not(.light-theme) .grid-overlay {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+        }
+        .light-theme .grid-overlay {
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        }
+
+        :root:not(.light-theme) nav {
+            background: rgba(10, 10, 18, 0.72);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        :root:not(.light-theme) nav.scrolled {
+            background: rgba(5, 5, 10, 0.94);
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+        }
+        .light-theme nav {
+            background: rgba(240, 240, 245, 0.85);
+            border-color: rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .light-theme nav.scrolled {
+            background: rgba(240, 240, 245, 0.96);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        :root:not(.light-theme) .logo {
+            background: linear-gradient(135deg, #fff 60%, var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .light-theme .logo {
+            background: linear-gradient(135deg, #1a1a2e 60%, var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        :root:not(.light-theme) .btn:hover {
+            background: rgba(255, 255, 255, 0.10);
+            border-color: var(--border-glow);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        .light-theme .btn:hover {
+            background: rgba(0, 0, 0, 0.06);
+            border-color: var(--border-glow);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        :root:not(.light-theme) .stat h3 {
+            background: linear-gradient(135deg, #fff, var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .light-theme .stat h3 {
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        :root:not(.light-theme) .skill-tag:hover {
+            color: #fff;
+        }
+        .light-theme .skill-tag:hover {
+            color: #fff;
+        }
+
+        :root:not(.light-theme) .age-card .value {
+            background: linear-gradient(135deg, #f472b6, #8b5cf6, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .light-theme .age-card .value {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        :root:not(.light-theme) .info-card .value {
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .light-theme .info-card .value {
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        :root:not(.light-theme) .about-text strong {
+            color: #fff;
+        }
+        .light-theme .about-text strong {
+            color: var(--text-primary);
+        }
+
+        :root:not(.light-theme) .social {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .light-theme .social {
+            color: var(--text-primary);
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        :root:not(.light-theme) .social:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--border-glow);
+        }
+        .light-theme .social:hover {
+            background: rgba(0, 0, 0, 0.06);
+            border-color: var(--border-glow);
+        }
+
+        :root:not(.light-theme) .social:hover small {
+            color: #fff;
+        }
+        .light-theme .social:hover small {
+            color: var(--text-primary);
+        }
+
+        :root:not(.light-theme) .edu-card .badge-edu {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent-1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        .light-theme .edu-card .badge-edu {
+            background: rgba(139, 92, 246, 0.08);
+            color: var(--accent-1);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        :root:not(.light-theme) .age-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(236, 72, 153, 0.08));
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        .light-theme .age-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.12);
+        }
+
+        :root:not(.light-theme) .info-card .icon-big {
+            opacity: 0.1;
+        }
+        .light-theme .info-card .icon-big {
+            opacity: 0.12;
+        }
+
+        :root:not(.light-theme) .mobile-nav {
+            background: rgba(8, 8, 16, 0.97);
+            border: 1px solid var(--border-color);
+        }
+        .light-theme .mobile-nav {
+            background: rgba(240, 240, 245, 0.97);
+            border: 1px solid var(--border-color);
+        }
+
+        :root:not(.light-theme) .mobile-nav a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+        }
+        .light-theme .mobile-nav a:hover {
+            background: rgba(0, 0, 0, 0.06);
+            color: var(--text-primary);
+        }
+
+        :root:not(.light-theme) .theme-toggle {
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+            border: 1px solid var(--border-color);
+        }
+        .light-theme .theme-toggle {
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        /* ========================================
+           RESET & BASE
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            transition: background 0.4s, color 0.4s;
+            cursor: default;
+        }
+
+        ::selection {
+            background: rgba(139, 92, 246, 0.4);
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ========================================
+           SCROLLBAR
+           ======================================== */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-2);
+        }
+
+        /* ========================================
+           PROGRESS BAR
+           ======================================== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s ease-out;
+        }
+
+        /* ========================================
+           CURSOR GLOW
+           ======================================== */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            transition: left 0.1s ease-out, top 0.1s ease-out;
+            will-change: left, top;
+        }
+        .light-theme .cursor-glow {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.06), transparent 70%);
+        }
+
+        /* ========================================
+           BACKGROUND ORBS
+           ======================================== */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: -2;
+            animation: orbFloat 18s ease-in-out infinite alternate;
+            transition: opacity 0.4s;
+        }
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            left: -200px;
+            top: -200px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.35), transparent 70%);
+            animation-delay: 0s;
+        }
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            right: -150px;
+            bottom: -150px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.2), transparent 70%);
+            animation-delay: -6s;
+        }
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.12), transparent 70%);
+            animation-delay: -12s;
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(40px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 40px) scale(0.95);
+            }
+            100% {
+                transform: translate(30px, -10px) scale(1.05);
+            }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-size: 60px 60px;
+        }
+
+        /* ========================================
+           NAVBAR
+           ======================================== */
+        nav {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1120px, 94%);
+            padding: 12px 24px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(28px) saturate(1.2);
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo span {
+            -webkit-text-fill-color: var(--accent-2);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+        .nav-links li a {
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+            position: relative;
+        }
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            transition: width 0.3s ease;
+        }
+        .nav-links li a:hover {
+            color: var(--text-primary);
+        }
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover {
+            transform: rotate(20deg);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-secondary);
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(400px, 92%);
+            backdrop-filter: blur(30px);
+            border-radius: 24px;
+            padding: 28px 24px;
+            z-index: 999;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+        }
+        .mobile-nav.open {
+            display: flex;
+        }
+        .mobile-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 16px;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+        .mobile-nav a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 20px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            max-width: 980px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px 8px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(4px);
+            margin-bottom: 28px;
+            letter-spacing: 0.6px;
+        }
+        .badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-3);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 10vw, 130px);
+            line-height: 0.92;
+            letter-spacing: -6px;
+            margin-bottom: 16px;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .sub-title {
+            font-size: clamp(18px, 2.5vw, 28px);
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 20px;
+            min-height: 48px;
+        }
+        .sub-title .typed-words {
+            color: var(--accent-3);
+            font-weight: 600;
+        }
+        .sub-title .cursor-blink {
+            display: inline-block;
+            animation: blink 1s step-end infinite;
+            color: var(--accent-3);
+        }
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hero-desc {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        .hero-buttons {
+            margin-top: 32px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 28px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.04);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border: none;
+            box-shadow: 0 4px 24px rgba(139, 92, 246, 0.3);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 8px 40px rgba(139, 92, 246, 0.45);
+            transform: translateY(-5px) scale(1.02);
+            background: linear-gradient(135deg, #9d71f8, #f062b0);
+        }
+
+        .visitor-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.03);
+            margin-top: 12px;
+            margin-bottom: 0px;
+        }
+        .visitor-count i {
+            color: var(--accent-3);
+        }
+
+        .floating-icons {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .float-icon {
+            position: absolute;
+            font-size: 28px;
+            opacity: 0.15;
+            animation: floatIcon 6s ease-in-out infinite;
+        }
+        @keyframes floatIcon {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-18px) rotate(8deg);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 12px;
+            letter-spacing: 1px;
+            animation: bounce-down 2s infinite;
+        }
+        .scroll-mouse {
+            width: 24px;
+            height: 38px;
+            border: 2px solid var(--text-muted);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            padding-top: 6px;
+        }
+        .scroll-wheel {
+            width: 3px;
+            height: 10px;
+            background: var(--accent-3);
+            border-radius: 4px;
+            animation: scrollWheel 1.5s ease-in-out infinite;
+        }
+        @keyframes scrollWheel {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(14px);
+                opacity: 0;
+            }
+        }
+        @keyframes bounce-down {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
+        /* ========================================
+           SECTION COMMON
+           ======================================== */
+        .section {
+            padding: 40px 0 60px;
+        }
+        .container {
+            width: min(1120px, 94%);
+            margin: 0 auto;
+        }
+
+        .section-label {
+            color: var(--accent-3);
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(36px, 5.5vw, 68px);
+            letter-spacing: -3px;
+            line-height: 1.05;
+            margin-bottom: 48px;
+        }
+
+        /* ========================================
+           ABOUT
+           ======================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 54px;
+            align-items: center;
+        }
+        .profile {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            background: linear-gradient(145deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.05));
+            transition: 0.5s ease;
+        }
+        .profile:hover {
+            transform: scale(1.01);
+            border-color: var(--border-glow);
+        }
+        .profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .profile-status {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            z-index: 2;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulse-dot 2s infinite;
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            line-height: 2;
+            font-size: 16px;
+        }
+        .about-text strong {
+            font-weight: 600;
+        }
+        .about-text .highlight {
+            color: var(--accent-3);
+            font-weight: 500;
+        }
+
+        /* ========================================
+           PERSONAL INFO CARDS
+           ======================================== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .info-card {
+            padding: 28px 32px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .info-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-glow);
+            background: var(--bg-card-hover);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .info-card .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .info-card .value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 6px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .info-card .sub-value {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        .info-card .icon-big {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 40px;
+            opacity: 0.1;
+        }
+
+        /* Age Card */
+        .age-card {
+            text-align: center;
+            padding: 32px 28px;
+        }
+        .age-card .label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+        .age-card .value {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 4px;
+        }
+        .age-card .sub-value {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /* ========================================
+           EDUCATION
+           ======================================== */
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .edu-card {
+            padding: 24px 28px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background: var(--bg-card);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .edu-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-glow);
+            background: var(--bg-card-hover);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+        .edu-card .year {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-3);
+            margin-bottom: 4px;
+        }
+        .edu-card .exam {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .edu-card .school {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        .edu-card .badge-edu {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        /* ========================================
+           LIFE (HOBBIES)
+           ======================================== */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .hobby-card {
+            padding: 32px 28px;
+            min-height: 180px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            text-align: center;
+        }
+        .hobby-card::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.10), transparent 70%);
+            right: -60px;
+            top: -60px;
+            transition: 0.6s ease;
+        }
+        .hobby-card:hover::before {
+            transform: scale(1.5);
+        }
+        .hobby-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glow);
+            background: var(--bg-card-hover);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .hobby-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+            display: inline-block;
+            transition: 0.4s ease;
+        }
+        .hobby-card:hover .hobby-icon {
+            transform: scale(1.15) rotate(-4deg);
+        }
+        .hobby-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 8px;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+        .hobby-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           PROJECTS
+           ======================================== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: left;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glow);
+            background: var(--bg-card-hover);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+        .project-icon {
+            font-size: 40px;
+            margin-bottom: 14px;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .project-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .project-link {
+            color: var(--accent-3);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .project-link:hover {
+            color: var(--accent-1);
+            gap: 12px;
+        }
+
+        /* ========================================
+           SOCIAL & CONTACT BUTTONS
+           ======================================== */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .social {
+            padding: 18px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .social:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        }
+        .social i {
+            margin-right: 10px;
+            color: var(--accent-3);
+            width: 20px;
+            text-align: center;
+        }
+        .social small {
+            color: var(--text-secondary);
+            font-weight: 400;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+        .social:hover small {
+            transform: translateX(4px);
+        }
+
+        .social[data-brand="facebook"]:hover i {
+            color: #1877f2;
+        }
+        .social[data-brand="instagram"]:hover i {
+            color: #e4405f;
+        }
+        .social[data-brand="tiktok"]:hover i {
+            color: #00f2ea;
+        }
+        .social[data-brand="telegram"]:hover i {
+            color: #0088cc;
+        }
+        .social[data-brand="linkedin"]:hover i {
+            color: #0a66c2;
+        }
+        .social[data-brand="gmail"]:hover i {
+            color: #ea4335;
+        }
+        .social[data-brand="phone"]:hover i {
+            color: #34b7f1;
+        }
+        .social[data-brand="whatsapp"]:hover i {
+            color: #25d366;
+        }
+        .social[data-brand="map"]:hover i {
+            color: #ea4335;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 28px 20px;
+            background: rgba(0, 0, 0, 0.03);
+        }
+        .light-theme footer {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        .footer-content {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            text-align: center;
+        }
+        footer p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            letter-spacing: 0.3px;
+        }
+        footer p span {
+            color: var(--accent-2);
+            font-weight: 600;
+        }
+        footer .footer-date {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* ========================================
+           BACK TO TOP
+           ======================================== */
+        .back-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+        }
+        .back-top.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .back-top:hover {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 8px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        /* ========================================
+           SCROLL REVEAL
+           ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.08s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.16s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.24s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.32s;
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 860px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hobbies-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .social-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            .section {
+                padding: 30px 0 40px;
+            }
+            .scroll-indicator {
+                display: none;
+            }
+            .age-card .value {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .hobbies-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: clamp(36px, 12vw, 54px);
+                letter-spacing: -2px;
+            }
+            .hero-desc {
+                font-size: 15px;
+            }
+
+            nav {
+                padding: 10px 16px;
+                top: 12px;
+            }
+            .logo {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: clamp(26px, 7vw, 36px);
+                letter-spacing: -1.5px;
+            }
+            .btn {
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+            .back-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+            .info-card .value {
+                font-size: 22px;
+            }
+            .age-card .value {
+                font-size: 28px;
+            }
+            .age-card {
+                padding: 24px 20px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero h1 {
+                font-size: 28px;
+                letter-spacing: -1px;
+            }
+            .badge {
+                font-size: 10px;
+                padding: 6px 12px;
+            }
+            .hobbies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ====== PROGRESS BAR ====== -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- ====== CURSOR GLOW ====== -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- ====== BACKGROUND ORBS ====== -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- ====== NAVBAR ====== -->
+    <nav id="navbar">
+        <div class="logo">TAMIM<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#info">Info</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#life">Life</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#social">Social</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+            </button>
+            <div class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== MOBILE NAV ====== -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#about">About</a>
+        <a href="#info">Info</a>
+        <a href="#education">Education</a>
+        <a href="#life">Life</a>
+        <a href="#projects">Projects</a>
+        <a href="#social">Social</a>
+    </div>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="badge">
+                <span class="dot"></span> Digital Identity / <span id="currentDate"></span>
+            </div>
+
+            <h1>
+                I'm<br>
+                <span class="gradient-text">Tamim Commander</span>
+            </h1>
+
+            <div class="sub-title">
+                I am a <span class="typed-words" id="typedWords"></span>
+                <span class="cursor-blink">|</span>
+            </div>
+
+            <p class="hero-desc">
+                Welcome to my digital corner. Here you'll find my work, interests, ideas,
+                social life, and everything that makes me — me.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">
+                    <i class="fas fa-arrow-right"></i> Explore My World
+                </a>
+                <a href="#social" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Get in Touch
+                </a>
+            </div>
+
+            <div class="visitor-count">
+                <i class="fas fa-eye"></i> <span id="visitorCount">1263</span> visitors
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ABOUT ====== -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-label reveal">01 — About Me</div>
+            <h2 class="section-title reveal">
+                More than a<br>
+                <span class="gradient-text">profile.</span>
+            </h2>
+
+            <div class="about-grid">
+                <div class="profile reveal">
+                    <img src="https://i.postimg.cc/Z5HBx9n0/file-00000000b0a0820790436d9b80bcc366.png" alt="Tamim Commander" />
+                    <div class="profile-status">
+                        <span class="status-dot"></span> Active
+                    </div>
+                </div>
+
+                <div class="about-text reveal reveal-delay-1">
+                    <p>
+                        <strong>Hey, I'm Tamim Commander.</strong>
+                    </p>
+                    <br>
+                    <p>
+                        I'm someone who enjoys the simple things in life—learning something new, meeting different people, exploring new places, and doing the things I genuinely enjoy.
+                    </p>
+                    <br>
+                    <p>
+                        Life doesn't always go as planned, and that's okay. I believe every experience has something to teach us. I'm just taking things one step at a time, learning from every moment, and creating my own story along the way. ✨
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PERSONAL INFO ====== -->
+    <section id="info" class="section">
+        <div class="container">
+            <div class="section-label reveal">02 — Personal Info</div>
+            <h2 class="section-title reveal">
+                Who I<br>
+                <span class="gradient-text">am.</span>
+            </h2>
+
+            <div class="info-grid">
+                <!-- Age Card -->
+                <div class="info-card age-card reveal reveal-delay-1">
+                    <div class="label">🎂 My Age</div>
+                    <div class="value" id="ageDisplay">-- years -- months -- days</div>
+                </div>
+
+                <!-- Birthday -->
+                <div class="info-card reveal reveal-delay-2">
+                    <div class="icon-big">📅</div>
+                    <div class="label">Birthday</div>
+                    <div class="value">May 24, 2007</div>
+                    <div class="sub-value">🎈 24 May 2007</div>
+                </div>
+
+                <!-- Occupation -->
+                <div class="info-card reveal reveal-delay-3">
+                    <div class="icon-big">🎓</div>
+                    <div class="label">Occupation</div>
+                    <div class="value">Student</div>
+                    <div class="sub-value">📚 Currently studying</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== EDUCATION ====== -->
+    <section id="education" class="section">
+        <div class="container">
+            <div class="section-label reveal">03 — Education</div>
+            <h2 class="section-title reveal">
+                My Learning<br>
+                <span class="gradient-text">Journey.</span>
+            </h2>
+
+            <div class="education-grid">
+                <div class="edu-card reveal reveal-delay-1">
+                    <div class="year">2017</div>
+                    <div class="exam">PSC</div>
+                    <div class="school">12 No. Char Kacchopiya Government Primary School</div>
+                    <span class="badge-edu">✓ Completed</span>
+                </div>
+
+                <div class="edu-card reveal reveal-delay-2">
+                    <div class="year">2020</div>
+                    <div class="exam">JSC</div>
+                    <div class="school">Char Aicha High School</div>
+                    <span class="badge-edu">✓ Completed</span>
+                </div>
+
+                <div class="edu-card reveal reveal-delay-3">
+                    <div class="year">2023</div>
+                    <div class="exam">SSC</div>
+                    <div class="school">Char Aicha High School</div>
+                    <span class="badge-edu">✓ Completed</span>
+                </div>
+
+                <div class="edu-card reveal reveal-delay-4">
+                    <div class="year">2025</div>
+                    <div class="exam">HSC</div>
+                    <div class="school">Alhaz Mocbul Hossain University and College</div>
+                    <span class="badge-edu">✓ Completed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== LIFE (HOBBIES) ====== -->
+    <section id="life" class="section">
+        <div class="container">
+            <div class="section-label reveal">04 — My Life</div>
+            <h2 class="section-title reveal">
+                Things I<br>
+                <span class="gradient-text">love.</span>
+            </h2>
+
+            <div class="hobbies-grid">
+                <div class="hobby-card reveal reveal-delay-1">
+                    <div class="hobby-icon">📚</div>
+                    <h3>Book Reading</h3>
+                    <p>Exploring worlds through pages — knowledge and imagination combined.</p>
+                </div>
+                <div class="hobby-card reveal reveal-delay-2">
+                    <div class="hobby-icon">✈️</div>
+                    <h3>Travelling</h3>
+                    <p>Discovering new places, meeting new people, and collecting experiences.</p>
+                </div>
+                <div class="hobby-card reveal reveal-delay-3">
+                    <div class="hobby-icon">🎵</div>
+                    <h3>Music</h3>
+                    <p>My escape — different moods, different playlists, different stories.</p>
+                </div>
+                <div class="hobby-card reveal reveal-delay-4">
+                    <div class="hobby-icon">🎥</div>
+                    <h3>Vlogging</h3>
+                    <p>Capturing moments and sharing stories through video.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PROJECTS ====== -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-label reveal">05 — My Projects</div>
+            <h2 class="section-title reveal">
+                What I'm<br>
+                <span class="gradient-text">building.</span>
+            </h2>
+
+            <div class="portfolio-grid">
+                <!-- Project 1: Hridoy Blood Bank -->
+                <div class="project-card reveal reveal-delay-1">
+                    <div class="project-icon">🩸</div>
+                    <h3>Hridoy Blood Bank</h3>
+                    <p>A blood bank website and app designed to connect donors with those in need. Built with care to save lives.</p>
+                    <a href="https://tamimcommander.github.io/Hridoy-Blood-Bank-/?fbclid=IwY2xjawUKiTNwZG9BWV4eG4DYWVtAjExAHNydGMGYXBwX2lkDDM1MDY4NTUzMTcyOAABHnbmLCp0UoY1lGf01LkvUSWNsg15c44o-x6QmemCXCIoEAEQqixWRYgj3-rO_aem_kZFQSe_FtBCm1CCBJugeEQ" target="_blank" rel="noopener noreferrer" class="project-link">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Project 2: Vlogging Facebook Page -->
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-icon">🎬</div>
+                    <h3>FlashBack PhotoGhar</h3>
+                    <p>My vlogging and creative content page where I share cinematic reels, wedding videos, and daily stories.</p>
+                    <a href="https://www.facebook.com/natokshortclips" target="_blank" rel="noopener noreferrer" class="project-link">
+                        Visit Page <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Project 3: Ads Boost Campaign -->
+                <div class="project-card reveal reveal-delay-3">
+                    <div class="project-icon">📈</div>
+                    <h3>Ads Boost Campaign</h3>
+                    <p>I run targeted Facebook ad campaigns to help businesses grow. From strategy to execution — I handle it all.</p>
+                    <a href="https://www.facebook.com/profile.php?id=61555743081197&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" class="project-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SOCIAL ====== -->
+    <section id="social" class="section">
+        <div class="container">
+            <div class="section-label reveal">06 — Find Me</div>
+            <h2 class="section-title reveal">
+                Connect<br>
+                <span class="gradient-text">everywhere.</span>
+            </h2>
+
+            <div class="social-grid">
+                <a href="https://www.facebook.com/share/1Cfuz4dYtb/" target="_blank" rel="noopener noreferrer" class="social reveal reveal-delay-1" data-brand="facebook">
+                    <span><i class="fab fa-facebook"></i> Facebook</span>
+                    <small>↗</small>
+                </a>
+                <a href="https://www.instagram.com/tamim.commander" target="_blank" rel="noopener noreferrer" class="social reveal reveal-delay-2" data-brand="instagram">
+                    <span><i class="fab fa-instagram"></i> Instagram</span>
+                    <small>↗</small>
+                </a>
+                <a href="https://www.tiktok.com/@zxcommander" target="_blank" rel="noopener noreferrer" class="social reveal reveal-delay-3" data-brand="tiktok">
+                    <span><i class="fab fa-tiktok"></i> TikTok</span>
+                    <small>↗</small>
+                </a>
+                <a href="https://t.me/ZXCOMMANDER" target="_blank" rel="noopener noreferrer" class="social reveal reveal-delay-4" data-brand="telegram">
+                    <span><i class="fab fa-telegram"></i> Telegram</span>
+                    <small>↗</small>
+                </a>
+                <a href="https://www.linkedin.com/in/tamim-comenddar-7793ab334" target="_blank" rel="noopener noreferrer" class="social reveal reveal-delay-1" data-brand="linkedin">
+                    <span><i class="fab fa-linkedin"></i> LinkedIn</span>
+                    <small>↗</small>
+                </a>
+                <a href="mailto:mdtamimikbal37336@gmail.com" class="social reveal reveal-delay-2" data-brand="gmail">
+                    <span><i class="fas fa-envelope"></i> Gmail</span>
+                    <small>✉</small>
+                </a>
+                <a href="tel:+8801707493733" class="social reveal reveal-delay-3" data-brand="phone">
+                    <span><i class="fas fa-phone"></i> Call Me</span>
+                    <small>📞</small>
+                </a>
+                <a href="https://wa.me/8801707493733" target="_blank" rel="noopener noreferrer" class="social reveal reveal-delay-4" data-brand="whatsapp">
+                    <span><i class="fab fa-whatsapp"></i> WhatsApp</span>
+                    <small>↗</small>
+                </a>
+                <!-- Home Address - Google Maps -->
+                <a href="https://maps.app.goo.gl/TLpcarwpbmvu32K4A?g_st=ac" target="_blank" rel="noopener noreferrer" class="social reveal reveal-delay-1" data-brand="map">
+                    <span><i class="fas fa-map-marker-alt"></i> Home Address</span>
+                    <small>↗</small>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div class="footer-content">
+            <p>
+                This portfolio created by <span>Tamim Commander</span> &nbsp;·&nbsp;
+                <span class="footer-date" id="footerDate"></span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ====== BACK TO TOP ====== -->
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ====== SCRIPTS ====== -->
+    <script>
+        // ============================================
+        // 0. CURRENT DATE in Badge & Footer
+        // ============================================
+        function updateDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+            document.getElementById('currentDate').textContent = dateStr;
+            document.getElementById('footerDate').textContent = dateStr;
+        }
+        updateDate();
+
+        // ============================================
+        // 1. AGE CALCULATOR (Updates daily)
+        // ============================================
+        function calculateAge() {
+            const birthday = new Date(2007, 4, 24);
+            const now = new Date();
+
+            let years = now.getFullYear() - birthday.getFullYear();
+            let months = now.getMonth() - birthday.getMonth();
+            let days = now.getDate() - birthday.getDate();
+
+            if (days < 0) {
+                months--;
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            return { years, months, days };
+        }
+
+        function updateAge() {
+            const age = calculateAge();
+            document.getElementById('ageDisplay').textContent =
+                `${age.years} years ${age.months} months ${age.days} days`;
+        }
+
+        updateAge();
+        setInterval(updateAge, 3600000);
+
+        // ============================================
+        // 2. TYPING EFFECT
+        // ============================================
+        const words = ['Developer', 'Designer', 'Creator', 'Dreamer', 'Builder', 'Explorer'];
+        let wordIndex = 0,
+            charIndex = 0,
+            isDeleting = false;
+        const typedEl = document.getElementById('typedWords');
+
+        function typeEffect() {
+            const current = words[wordIndex];
+            if (!isDeleting && charIndex <= current.length) {
+                typedEl.textContent = current.substring(0, charIndex++);
+            } else if (isDeleting && charIndex >= 0) {
+                typedEl.textContent = current.substring(0, charIndex--);
+            } else {
+                isDeleting = !isDeleting;
+                if (!isDeleting) wordIndex = (wordIndex + 1) % words.length;
+                charIndex = isDeleting ? current.length : 0;
+            }
+            setTimeout(typeEffect, isDeleting ? 40 : 120);
+        }
+        typeEffect();
+
+        // ============================================
+        // 3. CURSOR GLOW
+        // ============================================
+        const glow = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // ============================================
+        // 4. SCROLL REVEAL
+        // ============================================
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => observer.observe(el));
+
+        // ============================================
+        // 5. NAVBAR SCROLL
+        // ============================================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 30);
+        });
+
+        // ============================================
+        // 6. PROGRESS BAR
+        // ============================================
+        window.addEventListener('scroll', () => {
+            const scroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('progressBar').style.width = (scroll / height) * 100 + '%';
+        });
+
+        // ============================================
+        // 7. BACK TO TOP
+        // ============================================
+        const backTop = document.getElementById('backTop');
+        window.addEventListener('scroll', () => {
+            backTop.classList.toggle('visible', window.scrollY > 400);
+        });
+        backTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================
+        // 8. MOBILE HAMBURGER
+        // ============================================
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('open');
+        });
+
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('open');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && !e.target.closest('.mobile-nav')) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('open');
+            }
+        });
+
+        // ============================================
+        // 9. SMOOTH SCROLL
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - 100;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ============================================
+        // 10. THEME TOGGLE (Light is default)
+        // ============================================
+        const themeToggle = document.getElementById('themeToggle');
+        let isLight = true; // Light mode is default
+
+        function setTheme(light) {
+            isLight = light;
+            if (isLight) {
+                document.documentElement.classList.add('light-theme');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                document.documentElement.classList.remove('light-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+
+        themeToggle.addEventListener('click', () => setTheme(!isLight));
+
+        // Check saved preference, but default to light
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            setTheme(false);
+        } else {
+            setTheme(true); // Default to light
+        }
+
+        console.log('✨ Tamim Commander — Digital Identity loaded successfully!');
+        console.log('🌞 Light mode is default. Switch to dark mode using the toggle.');
+        console.log('🎂 Birthday: May 24, 2007 | Age updates daily.');
+        console.log('📍 Home Address button added — opens Google Maps.');
+        console.log('📏 Spacing fixed — no more empty gaps!');
+        console.log('🖼️ Profile image added in 16:9 aspect ratio box.');
+    </script>
+
+</body>
+  </html>
