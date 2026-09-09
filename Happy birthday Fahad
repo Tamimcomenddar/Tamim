@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>শুভ জন্মদিন ফাহাদ বয়াতি ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            color: white;
+            background:
+                radial-gradient(circle at top, #1a2a4a, #0a0e1a 55%, #05080f);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           STARS
+        ========================== */
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from {
+                opacity: .2;
+                transform: scale(.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        /* =========================
+           INTRO
+        ========================== */
+
+        .intro {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle, #1a2a5a, #0a0e1a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: 1s;
+        }
+
+        .intro.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .intro-content {
+            text-align: center;
+        }
+
+        .intro h1 {
+            font-size: clamp(35px, 8vw, 70px);
+            margin-bottom: 20px;
+            animation: glow 2s infinite alternate;
+            color: #ffb347;
+        }
+
+        .intro p {
+            color: #d5e0ff;
+            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .start-btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #f7971e, #ffd200);
+            color: #1a1a2e;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 30px #f7971e;
+            transition: .3s;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        main {
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 9vw, 90px);
+            background: linear-gradient(90deg,
+                    #fff,
+                    #ffb347,
+                    #fff);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradientMove 4s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            from {
+                background-position: 0%;
+            }
+            to {
+                background-position: 200%;
+            }
+        }
+
+        .hero h2 {
+            font-size: clamp(25px, 5vw, 45px);
+            color: #ffb347;
+            margin: 20px 0;
+        }
+
+        .hero p {
+            color: #d5e0ff;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           CAKE
+        ========================== */
+
+        .cake {
+            font-size: 100px;
+            margin: 30px;
+            animation: cakeFloat 2s infinite ease-in-out;
+        }
+
+        @keyframes cakeFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* =========================
+           BUTTON (ইংরেজি থাকবে)
+        ========================== */
+
+        .btn {
+            margin-top: 30px;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #f7971e, #ffd200);
+            color: #1a1a2e;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(247, 151, 30, .3);
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* =========================
+           FRIENDSHIP CARD
+        ========================== */
+
+        .love-card {
+            max-width: 700px;
+            padding: 45px;
+            border-radius: 30px;
+            text-align: center;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .15);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 80px rgba(0, 0, 0, .4);
+        }
+
+        .love-card h2 {
+            color: #ffb347;
+            font-size: 40px;
+            margin-bottom: 25px;
+        }
+
+        #typing {
+            font-size: 19px;
+            line-height: 2;
+            color: #e6edff;
+            min-height: 160px;
+            text-align: justify;
+        }
+
+        /* =========================
+           REASONS
+        ========================== */
+
+        .reasons {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .reasons h2 {
+            font-size: 45px;
+            margin-bottom: 40px;
+            color: #ffb347;
+        }
+
+        .reason-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .reason {
+            padding: 30px 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            transition: .4s;
+        }
+
+        .reason:hover {
+            transform: translateY(-15px) rotate(2deg);
+            background: rgba(255, 180, 60, .15);
+        }
+
+        .reason span {
+            font-size: 40px;
+        }
+
+        .reason h3 {
+            margin: 15px 0;
+            color: #ffb347;
+        }
+
+        .reason p {
+            color: #c8d4f0;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           GIFT
+        ========================== */
+
+        .gift-section {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .gift-section h2 {
+            font-size: 45px;
+            color: #ffb347;
+            margin-bottom: 30px;
+        }
+
+        .gift {
+            position: relative;
+            width: 180px;
+            height: 140px;
+            cursor: pointer;
+            margin: 30px;
+        }
+
+        .gift-box {
+            position: absolute;
+            bottom: 0;
+            width: 180px;
+            height: 110px;
+            background: #f7971e;
+            border-radius: 8px;
+        }
+
+        .gift-box::before {
+            content: "";
+            position: absolute;
+            left: 70px;
+            width: 35px;
+            height: 100%;
+            background: #ffd200;
+        }
+
+        .gift-lid {
+            position: absolute;
+            top: 10px;
+            width: 200px;
+            height: 35px;
+            left: -10px;
+            background: #ffb347;
+            border-radius: 8px;
+            transition: 1s;
+            z-index: 2;
+        }
+
+        .gift-lid::after {
+            content: "";
+            position: absolute;
+            left: 83px;
+            width: 35px;
+            height: 35px;
+            background: #ffd200;
+        }
+
+        .gift.open .gift-lid {
+            transform: translateY(-100px) rotate(-15deg);
+        }
+
+        .gift-message {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 1s;
+            color: #d5e0ff;
+            font-size: 20px;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .gift.open+.gift-message {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           MEMORIES
+        ========================== */
+
+        .memories {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .memories h2 {
+            font-size: 45px;
+            color: #ffb347;
+            margin-bottom: 40px;
+        }
+
+        .memory-box {
+            max-width: 700px;
+            padding: 50px;
+            border: 2px dashed rgba(255, 255, 255, .3);
+            border-radius: 30px;
+        }
+
+        .memory-box .emoji {
+            font-size: 80px;
+        }
+
+        .memory-box h3 {
+            color: #ffb347;
+            font-size: 28px;
+            margin: 15px 0;
+        }
+
+        .memory-box p {
+            margin-top: 20px;
+            color: #c8d4f0;
+            line-height: 1.8;
+            font-size: 17px;
+            text-align: justify;
+        }
+
+        /* =========================
+           COUNTDOWN
+        ========================== */
+
+        .countdown {
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .countdown h2 {
+            font-size: 40px;
+            color: #ffb347;
+            margin-bottom: 30px;
+        }
+
+        .timer {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .time {
+            width: 110px;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .time span {
+            display: block;
+            font-size: 35px;
+            font-weight: bold;
+            color: #ffb347;
+        }
+
+        .time small {
+            color: #a8b8d8;
+        }
+
+        /* =========================
+           MUSIC
+        ========================== */
+
+        .music-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: none;
+            background: #f7971e;
+            color: #1a1a2e;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 0 20px #f7971e;
+        }
+
+        /* =========================
+           FLOATING HEART
+        ========================== */
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            font-size: 25px;
+            animation: heartFly 2s forwards;
+            z-index: 999;
+        }
+
+        @keyframes heartFly {
+            0% {
+                transform: translateY(0) scale(.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) translateX(var(--x)) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           CONFETTI
+        ========================== */
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -20px;
+            z-index: 999;
+            pointer-events: none;
+            animation: fall 4s linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           FIREWORK
+        ========================== */
+
+        .firework {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 998;
+            animation: explode 1.2s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(30) translate(var(--x), var(--y));
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+            color: #a8b8d8;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        footer strong {
+            color: #ffb347;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media(max-width:700px) {
+            .reason-grid {
+                grid-template-columns: 1fr;
+            }
+            .love-card {
+                padding: 30px 20px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .timer {
+                gap: 10px;
+            }
+            .time {
+                width: 75px;
+            }
+            .time span {
+                font-size: 25px;
+            }
+            .gift-message {
+                font-size: 17px;
+                padding: 0 15px;
+            }
+            .memory-box {
+                padding: 25px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         INTRO SCREEN
+    ========================== -->
+
+    <div class="intro" id="intro">
+        <div class="intro-content">
+            <h1>🎉 একটি ছোট্ট চমক</h1>
+            <p>
+                আজকে এক বিশেষ মানুষটির জন্মদিন…<br />
+                <span style="color:#ffb347;font-weight:bold;">ফাহাদ বয়াতি</span>, এই স্পেশাল মুহূর্তটি শুধু তোমার জন্য!
+            </p>
+            <button class="start-btn" onclick="startExperience()">
+                Open Your Surprise ❤️
+            </button>
+        </div>
+    </div>
+
+    <!-- Stars -->
+    <div class="stars" id="stars"></div>
+
+    <!-- =========================
+         MUSIC
+    ========================== -->
+
+    <button class="music-btn" onclick="toggleMusic()" id="musicButton">
+        🎵
+    </button>
+
+    <audio id="music" loop>
+        <!-- তোমার পছন্দের গানের URL এখানে দাও:
+        <source src="your-song.mp3" type="audio/mpeg">
+        -->
+    </audio>
+
+    <main>
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="hero">
+            <div class="hero-content">
+                <div class="cake">🎂</div>
+                <h1>শুভ জন্মদিন</h1>
+                <h2>ফাহাদ বয়াতি ❤️</h2>
+                <p>
+                    আজ শুধু আরেকটি দিন নয়।<br />
+                    আজ আমরা সেই দিনটিকে উদযাপন করি, যখন পৃথিবীতে এক কিংবদন্তির আগমন ঘটে —<br />
+                    আমার ভাই, আমার শৈশবের নায়ক, আমার <strong>ফাহাদ বয়াতি</strong>।
+                </p>
+                <button class="btn" onclick="celebrate()">
+                    🎉 Celebrate!
+                </button>
+            </div>
+        </section>
+
+        <!-- =========================
+             FRIENDSHIP MESSAGE (বাংলা)
+        ========================== -->
+
+        <section>
+            <div class="love-card">
+                <h2>💛 আমার হৃদয় থেকে</h2>
+                <p id="typing"></p>
+                <button class="btn" onclick="typeMessage()">
+                    Read My Heart ❤️
+                </button>
+            </div>
+        </section>
+
+        <!-- =========================
+             REASONS (বাংলা)
+        ========================== -->
+
+        <section class="reasons">
+            <h2>তুমি কেন একজন কিংবদন্তি 🌟</h2>
+            <div class="reason-grid">
+
+                <div class="reason">
+                    <span>🤝</span>
+                    <h3>ভ্রাতৃত্ব</h3>
+                    <p>
+                        সুখে-দুঃখে, সবসময় তুমি আমার সেই ভাই যে আমি কখনো পাইনি।
+                        তুমি সব সময় আমার পাশে থেকেছ, কোনো প্রশ্ন ছাড়াই।
+                    </p>
+                </div>
+
+                <div class="reason">
+                    <span>😂</span>
+                    <h3>তোমার হাসি</h3>
+                    <p>
+                        তোমার হাসি অত্যন্ত সংক্রামক — তা যেকোনো বিষণ্ণ দিনকে
+                        উৎসবের রূপ দিতে পারে। কখনো হাসা বন্ধ করো না, ভাই।
+                    </p>
+                </div>
+
+                <div class="reason">
+                    <span>🏆</span>
+                    <h3>তোমার হৃদয়</h3>
+                    <p>
+                        তোমার হৃদয় সোনার মতো। তুমি গভীরভাবে যত্ন নাও, প্রবলভাবে ভালোবাসো,
+                        এবং তোমার আশেপাশের সবাইকে বিশেষ অনুভব করাও।
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             GIFT (বাংলা)
+        ========================== -->
+
+        <section class="gift-section">
+            <h2>🎁 তোমার জন্য কিছু</h2>
+            <p style="color:#d5e0ff;margin-bottom:10px;">
+                উপহারটি ক্লিক করো, ভাই…
+            </p>
+
+            <div class="gift" id="gift" onclick="openGift()">
+                <div class="gift-lid"></div>
+                <div class="gift-box"></div>
+            </div>
+
+            <div class="gift-message">
+                💛 আমার জীবনের সবচেয়ে বড় উপহার হলো তুমি, ফাহাদ বয়াতি।<br /><br />
+                আমার ভাই, আমার আত্মার সঙ্গী, আমার নোঙর হওয়ার জন্য তোমাকে অসংখ্য ধন্যবাদ।<br />
+                শুভ জন্মদিন, আমার প্রিয় বন্ধু! 🌹
+            </div>
+        </section>
+
+        <!-- =========================
+             MEMORIES (শৈশবের গল্প - বাংলা)
+        ========================== -->
+
+        <section class="memories">
+            <h2>📸 আমাদের শৈশব</h2>
+            <div class="memory-box">
+                <div class="emoji">🏏</div>
+                <h3>খালি পায়ের ছেলেবেলা থেকে চিরকালের ভাই</h3>
+                <p>
+                    <strong>তামিম কমান্ডার</strong> তোমাকে এই কথাগুলো লিখছে মুখে হাসি আর চোখে এক ফোঁটা জল নিয়ে।<br /><br />
+
+                    আমি এখনও সেই সোনালি দিনগুলো মনে করি, ফাহাদ বয়াতি — যখন আমরা দু’জন ছোট্ট ছেলে পাড়ায় দৌড়াদৌড়ি করতাম,
+                    প্লাস্টিকের ব্যাট আর টেপ-জড়ানো টেনিস বল নিয়ে ক্রিকেট খেলতাম। তুমি সবসময় ভালো বোলার হলে,
+                    আর আমি ছিলাম বেপরোয়া ব্যাটসম্যান যে কখনো আউট হতে চাইত না।<br /><br />
+
+                    আমরা গাছে উঠতাম, আম চুরি করতাম, মায়ের বকুনি খেতাম, আর একে অপরকে প্রতিজ্ঞা করতাম
+                    যে আমরা চিরকাল বন্ধু থাকব। আর এখন দেখো — কত বছর পার হয়ে গেছে, তবুও আমরা ভাই,
+                    এখনও হাসি, এখনও একসঙ্গে স্বপ্ন দেখি।<br /><br />
+
+                    তুমি শুধু আমার শৈশবের বন্ধু নও — তুমি আমার <strong>বাগিনা</strong>, আমার ভাই,
+                    আমার 'রাইড-অর-ডাই'। প্রতিটি স্কুলের ঝগড়া, প্রতিটি মনের ব্যাথা, প্রতিটি জয় ও পরাজয়ে
+                    — তুমি আমার পাশে ছিলে। আর আশা করি তুমি জানো যে আমিও সবসময় তোমার পাশে থাকব।<br /><br />
+
+                    তুমি যেমন আছ, সেজন্য তোমাকে ধন্যবাদ, ফাহাদ বয়াতি। স্মৃতি, হাসি, গভীর রাতের আড্ডা,
+                    এবং শর্তহীন বন্ধুত্বের জন্য ধন্যবাদ। তুমি আমার জীবনকে অনেক উজ্জ্বল করে তুলেছ।<br /><br />
+
+                    আরও কয়েক মিলিয়ন স্মৃতির উদ্দেশ্যে, ভাই। 🥂<br /><br />
+
+                    <span style="color:#ffb347;font-size:20px;">
+                        আমার সমস্ত ভালোবাসা নিয়ে,<br />
+                        <strong>তামিম কমান্ডার</strong> ❤️
+                    </span>
+                </p>
+                <button class="btn" onclick="celebrate()">
+                    ❤️ Our Story
+                </button>
+            </div>
+        </section>
+
+        <!-- =========================
+             COUNTDOWN (বাংলা)
+        ========================== -->
+
+        <section class="countdown">
+            <h2>⏳ তোমার পরবর্তী জন্মদিন পর্যন্ত</h2>
+            <div class="timer">
+                <div class="time">
+                    <span id="days">00</span>
+                    <small>দিন</small>
+                </div>
+                <div class="time">
+                    <span id="hours">00</span>
+                    <small>ঘন্টা</small>
+                </div>
+                <div class="time">
+                    <span id="minutes">00</span>
+                    <small>মিনিট</small>
+                </div>
+                <div class="time">
+                    <span id="seconds">00</span>
+                    <small>সেকেন্ড</small>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        ❤️ দিয়ে তৈরি করেছেন <strong>তামিম কমান্ডার</strong> —<br />
+        তার ভাই, তার নায়ক <strong>ফাহাদ বয়াতি</strong>-এর জন্য
+    </footer>
+
+    <script>
+        /* =========================
+           CREATE STARS
+        ========================== */
+
+        const stars = document.getElementById("stars");
+        for (let i = 0; i < 120; i++) {
+            const star = document.createElement("div");
+            star.classList.add("star");
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+            star.style.animationDelay = Math.random() * 3 + "s";
+            stars.appendChild(star);
+        }
+
+        /* =========================
+           START EXPERIENCE
+        ========================== */
+
+        function startExperience() {
+            const intro = document.getElementById("intro");
+            intro.classList.add("hide");
+            celebrate();
+        }
+
+        /* =========================
+           CONFETTI
+        ========================== */
+
+        function celebrate() {
+            for (let i = 0; i < 120; i++) {
+                const confetti = document.createElement("div");
+                confetti.classList.add("confetti");
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.background =
+                    `hsl(${Math.random() * 360},100%,70%)`;
+                confetti.style.animationDuration =
+                    Math.random() * 3 + 2 + "s";
+                confetti.style.width =
+                    Math.random() * 8 + 5 + "px";
+                confetti.style.height =
+                    Math.random() * 8 + 5 + "px";
+                document.body.appendChild(confetti);
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+            fireworks();
+        }
+
+        /* =========================
+           FIREWORKS
+        ========================== */
+
+        function fireworks() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement("div");
+                    firework.classList.add("firework");
+                    firework.style.left = Math.random() * 100 + "vw";
+                    firework.style.top = Math.random() * 60 + "vh";
+                    firework.style.background =
+                        `hsl(${Math.random() * 360},100%,70%)`;
+                    firework.style.setProperty(
+                        "--x",
+                        (Math.random() * 200 - 100) + "px"
+                    );
+                    firework.style.setProperty(
+                        "--y",
+                        (Math.random() * 200 - 100) + "px"
+                    );
+                    document.body.appendChild(firework);
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 1500);
+                }, i * 250);
+            }
+        }
+
+        /* =========================
+           TYPEWRITER — বাংলা চিঠি (নাম আপডেট)
+        ========================== */
+
+        const message = `
+        আমার প্রিয় ফাহাদ বয়াতি, 💛
+
+        কোথা থেকে শুরু করব?
+
+        তুমি শুধু বন্ধু নও — তুমি আমার ভাই, আমার শৈশবের সহচর,
+        এবং আমি এখন পর্যন্ত যাদের চিনেছি তাদের মধ্যে সবচেয়ে আন্তরিক আত্মাদের একজন।
+
+        আমি এখনও সেই অবিরাম বিকেলগুলো মনে করি, যখন আমরা স্কুল থেকে দৌড়ে বাড়ি এসে
+        ব্যাগ ফেলে মাঠে ছুটে যেতাম। আমাদের কাছে ছিল শুধু একটি বল, একটি ব্যাট, আর একটি স্বপ্ন —
+        কিন্তু তোমার সাথে সবকিছুই যেন ছিল পূর্ণ।
+
+        তুমি আমাকে আনুগত্য শিখিয়েছ। তুমি আমাকে শিখিয়েছ যে প্রকৃত বন্ধুত্ব কেবল বছরের সংখ্যায় মাপা হয় না —
+        বরং তা মাপা হয় কতটা মুহূর্ত ভাগ করে নিয়েছি, কতটা অশ্রু মুছেছি, কতটা হাসি বিনিময় করেছি
+        যখন পৃথিবী ভারী মনে হয়েছে।
+
+        জীবনের প্রতিটি ঋতুতে — ভালো, মন্দ, জটিল, এবং জাদুকরী — তুমি আমার পাশে ছিলে।
+        তুমি আমার নোঙর হয়েছ যখন আমি ভাসছিলাম, আমার আলো হয়েছ যখন আমি হারিয়ে যাচ্ছিলাম,
+        এবং আমার সবচেয়ে বড় উৎসাহদাতা হয়েছ যখন আমার কাউকে বিশ্বাস করতে হয়েছে।
+
+        আর আজ, যখন তুমি জীবনের আরেকটি বছর উদযাপন করছ, আমি চাই তুমি জানো:
+
+        তুমি ভালোবাসার পাত্র। তুমি মূল্যবান। তুমি অপূরণীয়।
+
+        এই বছর তোমার জীবনে সবকিছু আসুক যা তুমি চাও — সাফল্য, আনন্দ, শান্তি,
+        এবং সব সুখ যা তুমি প্রাপ্য। মাথা উঁচু রাখো, হৃদয় উদার রাখো,
+        আর মনোবল অদম্য রাখো।
+
+        তুমি যেমন আছ, সেজন্য ধন্যবাদ, ফাহাদ বয়াতি। আমার ভাই হওয়ার জন্য ধন্যবাদ।
+
+        শুভ জন্মদিন, কিংবদন্তি। 🎉
+
+        চিরকাল তোমার,
+        তামিম কমান্ডার ❤️
+        `;
+
+        let typingStarted = false;
+
+        function typeMessage() {
+            if (typingStarted) return;
+            typingStarted = true;
+            const element = document.getElementById("typing");
+            let index = 0;
+
+            function type() {
+                if (index < message.length) {
+                    element.innerHTML +=
+                        message[index] === "\n" ?
+                        "<br>" :
+                        message[index];
+                    index++;
+                    setTimeout(type, 25);
+                }
+            }
+            type();
+        }
+
+        /* =========================
+           GIFT
+        ========================== */
+
+        function openGift() {
+            const gift = document.getElementById("gift");
+            gift.classList.toggle("open");
+            if (gift.classList.contains("open")) {
+                celebrate();
+            }
+        }
+
+        /* =========================
+           FLOATING HEARTS ON CLICK
+        ========================== */
+
+        document.addEventListener("click", function(event) {
+            for (let i = 0; i < 3; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("floating-heart");
+                heart.innerHTML =
+                    ["❤️", "💛", "🧡", "💖"][
+                        Math.floor(Math.random() * 4)
+                    ];
+                heart.style.left = event.clientX + "px";
+                heart.style.top = event.clientY + "px";
+                heart.style.setProperty(
+                    "--x",
+                    (Math.random() * 150 - 75) + "px"
+                );
+                document.body.appendChild(heart);
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }
+        });
+
+        /* =========================
+           MUSIC
+        ========================== */
+
+        let musicPlaying = false;
+
+        function toggleMusic() {
+            const music = document.getElementById("music");
+            const button = document.getElementById("musicButton");
+            if (!music.src) {
+                alert("🎵 প্রথমে <audio> এলিমেন্টে তোমার পছন্দের গান যোগ করো!");
+                return;
+            }
+            if (musicPlaying) {
+                music.pause();
+                button.innerHTML = "🎵";
+            } else {
+                music.play();
+                button.innerHTML = "⏸️";
+            }
+            musicPlaying = !musicPlaying;
+        }
+
+        /* =========================
+           COUNTDOWN — ফাহাদ বয়াতির পরবর্তী জন্মদিন
+        ========================== */
+
+        const birthday = new Date("September 5, 2027 00:00:00");
+
+        function updateCountdown() {
+            const now = new Date();
+            const difference = birthday - now;
+
+            if (difference <= 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(difference / (1000 * 60 * 60) % 24);
+            const minutes = Math.floor(difference / (1000 * 60) % 60);
+            const seconds = Math.floor(difference / 1000 % 60);
+
+            document.getElementById("days").innerText =
+                String(days).padStart(2, "0");
+            document.getElementById("hours").innerText =
+                String(hours).padStart(2, "0");
+            document.getElementById("minutes").innerText =
+                String(minutes).padStart(2, "0");
+            document.getElementById("seconds").innerText =
+                String(seconds).padStart(2, "0");
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+
+</html>
